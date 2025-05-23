@@ -1,5 +1,6 @@
 import React from 'react';
 import { Home, FileText, Users, Settings, Calendar, BarChart2, ExternalLink } from 'lucide-react';
+import logo from '../../assets/logo.svg'; // adjust path as needed
 
 export const Sidebar: React.FC = () => {
   return (
@@ -7,7 +8,7 @@ export const Sidebar: React.FC = () => {
       <div className="p-4 border-b border-gray-200">
         <div className="flex items-center space-x-2">
           <div className="w-32 h-8">
-           <img src="/src/assets/logo.svg" alt="Logo" />
+           <img src={logo} alt="Logo" />
 
           </div>
         </div>
