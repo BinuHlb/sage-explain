@@ -27,11 +27,14 @@ const Step6TaskCompletion: React.FC<Step6TaskCompletionProps> = ({ viewMode }) =
   });
   
   const [kpiItems, setKpiItems] = useState<KPIItem[]>([
-    { id: '1', title: 'Code follows project standards', completed: false, required: true },
-    { id: '2', title: 'Unit tests written and passing', completed: false, required: true },
-    { id: '3', title: 'Documentation updated', completed: false, required: true },
-    { id: '4', title: 'Peer review completed', completed: false, required: true },
-    { id: '5', title: 'Performance requirements met', completed: false, required: true }
+    { id: '1', title: 'Signed Financial Statements', completed: false, required: true },
+    { id: '2', title: 'Zoho Timesheet Summary Report', completed: false, required: true },
+    { id: '3', title: 'Letter of Representation (LOR)', completed: false, required: true },
+    { id: '4', title: 'Specific LORs, if applicable', completed: false, required: true },
+    { id: '5', title: 'Management Letter', completed: false, required: true },
+    { id: '6', title: 'Client-approved FS', completed: false, required: true },
+    { id: '7', title: 'AML Certificate (for Exchange House clients)', completed: false, required: true },
+    { id: '8', title: 'Free Zone Summary Certificate (where applicable)', completed: false, required: true }
   ]);
 
   const handleTimeSubmit = (e: React.FormEvent) => {
