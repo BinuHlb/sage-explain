@@ -33,7 +33,7 @@ const Step5AdditionalHours: React.FC<Step5AdditionalHoursProps> = ({ viewMode })
                 <span className="font-medium">Frontend Development</span>
                 <span className="ml-2 px-2 py-0.5 text-xs rounded-full bg-yellow-100 text-yellow-800">+15 Hours</span>
               </div>
-              <span className="text-xs text-gray-500">Requested: Oct 22, 2023</span>
+              <span className="text-xs text-gray-500">Requested: Oct 22, 2025</span>
             </div>
             <p className="text-sm text-gray-600 mt-1">
               <span className="font-medium">From:</span> TechSolutions Inc
@@ -59,7 +59,7 @@ const Step5AdditionalHours: React.FC<Step5AdditionalHoursProps> = ({ viewMode })
                 <span className="font-medium">Database Migration</span>
                 <span className="ml-2 px-2 py-0.5 text-xs rounded-full bg-yellow-100 text-yellow-800">+8 Hours</span>
               </div>
-              <span className="text-xs text-gray-500">Requested: Oct 23, 2023</span>
+              <span className="text-xs text-gray-500">Requested: Oct 23, 2025</span>
             </div>
             <p className="text-sm text-gray-600 mt-1">
               <span className="font-medium">From:</span> DataMasters
@@ -163,7 +163,7 @@ const Step5AdditionalHours: React.FC<Step5AdditionalHoursProps> = ({ viewMode })
                   <span className="px-2 py-0.5 text-xs rounded-full bg-yellow-100 text-yellow-800">Pending</span>
                 </div>
                 <p className="text-sm text-gray-600 mt-1">Requested: +15 hours</p>
-                <p className="text-sm text-gray-600">Submitted: Oct 22, 2023</p>
+                <p className="text-sm text-gray-600">Submitted: Oct 22, 2025</p>
               </div>
             </div>
           </div>

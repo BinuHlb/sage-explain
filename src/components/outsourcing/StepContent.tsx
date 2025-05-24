@@ -10,6 +10,7 @@ import Step7Profitability from './steps/Step7Profitability';
 import Step8InvoiceLinking from './steps/Step8InvoiceLinking';
 import Step9FinalReview from './steps/Step9FinalReview';
 import Step10PostEngagement from './steps/Step10PostEngagement';
+import Step11Flow1 from './steps/Step11Flow1';
 
 const StepContent: React.FC = () => {
   const { currentStep, viewMode } = useOutsourcing();
@@ -36,13 +37,15 @@ const StepContent: React.FC = () => {
         return <Step9FinalReview viewMode={viewMode} />;
       case 10:
         return <Step10PostEngagement viewMode={viewMode} />;
+        case 11:
+        return <Step11Flow1 viewMode={viewMode} />;
       default:
         return <div>Select a step to view details</div>;
     }
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-md overflow-hidden">
+    <div className="bg-white rounded-xl  overflow-hidden">
       <div className="p-6">
         {renderStepContent()}
       </div>

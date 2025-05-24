@@ -58,45 +58,92 @@ const Step3ProjectGeneration: React.FC<Step3ProjectGenerationProps> = ({ viewMod
         
         <div className="md:col-span-2 border rounded-lg p-4 bg-gray-50">
           <h3 className="text-lg font-medium mb-3">Template Tasks</h3>
-          <div className="overflow-hidden rounded-md border border-gray-200">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-100">
-                <tr>
-                  <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Task</th>
-                  <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    <div className="flex items-center">
-                      <CalendarClock className="w-4 h-4 mr-1" />
-                      <span>Hours</span>
-                    </div>
-                  </th>
-                  <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    <div className="flex items-center">
-                      <DollarSign className="w-4 h-4 mr-1" />
-                      <span>Budget</span>
-                    </div>
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
-                {tasks.map((task) => (
-                  <tr key={task.id}>
-                    <td className="px-4 py-3">
-                      <div className="text-sm font-medium">{task.name}</div>
-                      <div className="text-xs text-gray-500">{task.role}</div>
-                    </td>
-                    <td className="px-4 py-3 text-sm">{task.hours} hrs</td>
-                    <td className="px-4 py-3 text-sm">${task.hours * 75}</td>
-                  </tr>
-                ))}
-              </tbody>
-              <tfoot className="bg-gray-50">
-                <tr>
-                  <td className="px-4 py-2 text-sm font-medium">Total</td>
-                  <td className="px-4 py-2 text-sm font-medium">108 hrs</td>
-                  <td className="px-4 py-2 text-sm font-medium">$8,100</td>
-                </tr>
-              </tfoot>
-            </table>
+          <div className="overflow-scroll rounded-md border border-gray-200">
+            <table className="min-w-full divide-y divide-gray-200 border">
+  <thead className="bg-gray-100">
+    <tr>
+      <th rowSpan={2} className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border">
+        Task
+      </th>
+      <th colSpan={4} className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border">
+        <div className="flex items-center">
+          <CalendarClock className="w-4 h-4 mr-1" />
+          <span>Hours</span>
+        </div>
+      </th>
+      <th colSpan={4} className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border">
+        <div className="flex items-center">
+          <DollarSign className="w-4 h-4 mr-1" />
+          <span>Budget</span>
+        </div>
+      </th>
+    </tr>
+    <tr>
+      {['UAE Budgeted', 'UAE Actual', 'Subcontractor Budgeted', 'Subcontractor Actual'].map((label, i) => (
+        <th key={`h-${i}`} className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border">
+          {label}
+        </th>
+      ))}
+      {['UAE Budgeted', 'UAE Actual', 'Subcontractor Budgeted', 'Subcontractor Actual'].map((label, i) => (
+        <th key={`b-${i}`} className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border">
+          {label}
+        </th>
+      ))}
+    </tr>
+  </thead>
+
+  <tbody className="bg-white divide-y divide-gray-200">
+    {[
+      {
+        id: 1,
+        name: 'Electrical Setup',
+        role: 'Engineer',
+        hours: [10, 8, 5, 6],
+        budget: [750, 600, 375, 450],
+      },
+      {
+        id: 2,
+        name: 'Plumbing Maintenance',
+        role: 'Technician',
+        hours: [12, 11, 4, 5],
+        budget: [900, 825, 300, 375],
+      },
+      {
+        id: 3,
+        name: 'Interior Finishing',
+        role: 'Designer',
+        hours: [15, 13, 6, 7],
+        budget: [1125, 975, 450, 525],
+      }
+    ].map((task) => (
+      <tr key={task.id}>
+        <td className="px-4 py-3 border">
+          <div className="text-sm font-medium">{task.name}</div>
+          <div className="text-xs text-gray-500">{task.role}</div>
+        </td>
+        {task.hours.map((h, i) => (
+          <td key={`h-${i}`} className="px-4 py-3 text-sm border">{h} hrs</td>
+        ))}
+        {task.budget.map((b, i) => (
+          <td key={`b-${i}`} className="px-4 py-3 text-sm border">${b}</td>
+        ))}
+      </tr>
+    ))}
+  </tbody>
+
+  <tfoot className="bg-gray-50">
+    <tr>
+      <td className="px-4 py-2 text-sm font-medium border">Total</td>
+      {[37, 32, 15, 18].map((h, i) => (
+        <td key={`tf-h-${i}`} className="px-4 py-2 text-sm font-medium border">{h} hrs</td>
+      ))}
+      {[2775, 2400, 1125, 1350].map((b, i) => (
+        <td key={`tf-b-${i}`} className="px-4 py-2 text-sm font-medium border">${b}</td>
+      ))}
+    </tr>
+  </tfoot>
+</table>
+
           </div>
           
           <div className="flex justify-end mt-4">

@@ -1,5 +1,6 @@
 import React from 'react';
 import { FileText, ArrowRight, CheckCircle } from 'lucide-react';
+import { jofWoData } from '../jofData';
 
 interface Step1JOFApprovalProps {
   viewMode: 'manager' | 'subcontractor' | 'reviewer';
@@ -17,7 +18,63 @@ const Step1JOFApproval: React.FC<Step1JOFApprovalProps> = ({ viewMode }) => {
           <p className="text-gray-600">Input: JOF approved in Sage X3</p>
         </div>
       </div>
-      
+      <div className="relative p-4 bg-gray-50 rounded-lg">
+  <h3 className="text-lg font-medium mb-2">JOF to WO Conversion Log</h3>
+  <p className="text-xs text-gray-400 mb-1">← Scroll right to see all columns</p>
+
+  <div className="relative overflow-x-auto">
+   
+    <table className="min-w-full divide-y divide-gray-200 text-sm">
+      <thead className="bg-gray-100">
+        <tr>
+          {[
+            'JOF ID', 'WO', 'Verified By', 'Reg Auth', 'Signed On', 'Project Code',
+            'Coat', 'Date', 'Scope', 'Category', 'Fees', 'Job Status',
+            'Signed Year', 'Managers', 'Report Type', 'Period', 'Date of Report'
+          ].map((header, idx) => (
+            <th key={idx} className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">
+              {header}
+            </th>
+          ))}
+        </tr>
+      </thead>
+      <tbody className="bg-white divide-y divide-gray-200">
+  {jofWoData.map((item, i) => (
+    <tr key={i} className="hover:bg-gray-100 cursor-pointer">
+      <td className="px-4 py-3 whitespace-nowrap">{item.jofId}</td>
+      <td className="px-4 py-3 whitespace-nowrap">{item.woId}</td>
+      <td className="px-4 py-3 whitespace-nowrap">{item.verifiedBy}</td>
+      <td className="px-4 py-3 whitespace-nowrap">{item.regAuth}</td>
+      <td className="px-4 py-3 whitespace-nowrap">{item.signedOn}</td>
+      <td className="px-4 py-3 whitespace-nowrap">{item.projectCode}</td>
+      <td className="px-4 py-3 whitespace-nowrap">{item.coat}</td>
+      <td className="px-4 py-3 whitespace-nowrap">{item.date}</td>
+      <td className="px-4 py-3 whitespace-nowrap">{item.scope}</td>
+      <td className="px-4 py-3 whitespace-nowrap">{item.category}</td>
+      <td className="px-4 py-3 whitespace-nowrap">{item.fees}</td>
+      <td className="px-4 py-3 whitespace-nowrap">
+        <span className={`px-2 py-1 text-xs rounded-full whitespace-nowrap ${
+          item.jobStatus === 'Completed'
+            ? 'bg-green-100 text-green-800'
+            : item.jobStatus === 'In Progress'
+            ? 'bg-yellow-100 text-yellow-800'
+            : 'bg-red-100 text-red-800'
+        }`}>
+          {item.jobStatus}
+        </span>
+      </td>
+      <td className="px-4 py-3 whitespace-nowrap">{item.signedYear}</td>
+      <td className="px-4 py-3 whitespace-nowrap">{item.manager}</td>
+      <td className="px-4 py-3 whitespace-nowrap">{item.reportType}</td>
+      <td className="px-4 py-3 whitespace-nowrap">{item.period}</td>
+      <td className="px-4 py-3 whitespace-nowrap">{item.reportDate}</td>
+    </tr>
+  ))}
+</tbody>
+    </table>
+  </div>
+</div>
+
       <div className="space-y-4">
         <div className="flex items-start space-x-8">
           <div className="flex-1 border rounded-lg p-4 bg-gray-50">
@@ -25,20 +82,20 @@ const Step1JOFApproval: React.FC<Step1JOFApprovalProps> = ({ viewMode }) => {
             <div className="space-y-3">
               <div className="p-3 bg-white border rounded-md">
                 <div className="flex justify-between">
-                  <span className="font-medium">JOF-2023-001</span>
+                  <span className="font-medium">JOF-2025-001</span>
                   <span className="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800">Approved</span>
                 </div>
                 <p className="text-sm text-gray-600 mt-1">Website Development Project</p>
-                <div className="mt-2 text-xs text-gray-500">Approved on: 10/15/2023</div>
+                <div className="mt-2 text-xs text-gray-500">Approved on: 10/15/2025</div>
               </div>
               
               <div className="p-3 bg-white border rounded-md">
                 <div className="flex justify-between">
-                  <span className="font-medium">JOF-2023-002</span>
+                  <span className="font-medium">JOF-2025-002</span>
                   <span className="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800">Approved</span>
                 </div>
                 <p className="text-sm text-gray-600 mt-1">Mobile App Enhancement</p>
-                <div className="mt-2 text-xs text-gray-500">Approved on: 10/18/2023</div>
+                <div className="mt-2 text-xs text-gray-500">Approved on: 10/18/2025</div>
               </div>
             </div>
           </div>
@@ -52,20 +109,20 @@ const Step1JOFApproval: React.FC<Step1JOFApprovalProps> = ({ viewMode }) => {
             <div className="space-y-3">
               <div className="p-3 bg-white border rounded-md">
                 <div className="flex justify-between">
-                  <span className="font-medium">WO-2023-001</span>
+                  <span className="font-medium">WO-2025-001</span>
                   <span className="px-2 py-1 text-xs rounded-full bg-blue-100 text-blue-800">Created</span>
                 </div>
-                <p className="text-sm text-gray-600 mt-1">Linked to JOF-2023-001</p>
-                <div className="mt-2 text-xs text-gray-500">Created on: 10/15/2023</div>
+                <p className="text-sm text-gray-600 mt-1">Linked to JOF-2025-001</p>
+                <div className="mt-2 text-xs text-gray-500">Created on: 10/15/2025</div>
               </div>
               
               <div className="p-3 bg-white border rounded-md">
                 <div className="flex justify-between">
-                  <span className="font-medium">WO-2023-002</span>
+                  <span className="font-medium">WO-2025-002</span>
                   <span className="px-2 py-1 text-xs rounded-full bg-blue-100 text-blue-800">Created</span>
                 </div>
-                <p className="text-sm text-gray-600 mt-1">Linked to JOF-2023-002</p>
-                <div className="mt-2 text-xs text-gray-500">Created on: 10/18/2023</div>
+                <p className="text-sm text-gray-600 mt-1">Linked to JOF-2025-002</p>
+                <div className="mt-2 text-xs text-gray-500">Created on: 10/18/2025</div>
               </div>
             </div>
           </div>
@@ -115,17 +172,17 @@ const Step1JOFApproval: React.FC<Step1JOFApprovalProps> = ({ viewMode }) => {
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
           <tr>
-            <td className="px-4 py-3 text-sm">JOF-2023-001</td>
-            <td className="px-4 py-3 text-sm">WO-2023-001</td>
-            <td className="px-4 py-3 text-sm">10/15/2023 09:32 AM</td>
+            <td className="px-4 py-3 text-sm">JOF-2025-001</td>
+            <td className="px-4 py-3 text-sm">WO-2025-001</td>
+            <td className="px-4 py-3 text-sm">10/15/2025 09:32 AM</td>
             <td className="px-4 py-3">
               <span className="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800">Success</span>
             </td>
           </tr>
           <tr>
-            <td className="px-4 py-3 text-sm">JOF-2023-002</td>
-            <td className="px-4 py-3 text-sm">WO-2023-002</td>
-            <td className="px-4 py-3 text-sm">10/18/2023 02:14 PM</td>
+            <td className="px-4 py-3 text-sm">JOF-2025-002</td>
+            <td className="px-4 py-3 text-sm">WO-2025-002</td>
+            <td className="px-4 py-3 text-sm">10/18/2025 02:14 PM</td>
             <td className="px-4 py-3">
               <span className="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800">Success</span>
             </td>

@@ -32,7 +32,7 @@ const FlowStepCard: React.FC<FlowStepCardProps> = ({ step, isActive, isCompleted
       className={`
         p-4 rounded-lg border cursor-pointer transition-all duration-200
         ${isActive 
-          ? 'border-blue-500 bg-blue-50 shadow-md' 
+          ? 'border-blue-500 bg-blue-50 ' 
           : isCompleted 
             ? 'border-green-200 bg-green-50' 
             : 'border-gray-200 hover:border-blue-200 hover:bg-blue-50'

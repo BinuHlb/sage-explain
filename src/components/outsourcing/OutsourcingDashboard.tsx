@@ -17,7 +17,7 @@ const OutsourcingDashboard: React.FC = () => {
         <ViewModeSelector viewMode={viewMode} setViewMode={setViewMode} />
       </div>
       
-      <div className="bg-white rounded-xl shadow-md overflow-hidden">
+      <div className="bg-white rounded-xl  overflow-hidden">
         <div className="p-6">
           <button 
             onClick={() => setIsExpanded(!isExpanded)}

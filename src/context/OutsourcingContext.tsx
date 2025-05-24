@@ -36,9 +36,9 @@ export const OutsourcingProvider: React.FC<{ children: ReactNode }> = ({ childre
   
   // Mock data
   const workOrders: WorkOrder[] = [
-    { id: 'WO-2023-001', jofId: 'JOF-2023-001', title: 'Website Development', status: 'in-progress' },
-    { id: 'WO-2023-002', jofId: 'JOF-2023-002', title: 'Mobile App Enhancement', status: 'pending' },
-    { id: 'WO-2023-003', jofId: 'JOF-2023-003', title: 'Database Migration', status: 'completed' },
+    { id: 'WO-2025-001', jofId: 'JOF-2025-001', title: 'Website Development', status: 'in-progress' },
+    { id: 'WO-2025-002', jofId: 'JOF-2025-002', title: 'Mobile App Enhancement', status: 'pending' },
+    { id: 'WO-2025-003', jofId: 'JOF-2025-003', title: 'Database Migration', status: 'completed' },
   ];
   
   const subcontractors: Subcontractor[] = [
@@ -48,9 +48,9 @@ export const OutsourcingProvider: React.FC<{ children: ReactNode }> = ({ childre
   ];
   
   const tasks: Task[] = [
-    { id: 'T-001', workOrderId: 'WO-2023-001', title: 'Frontend Development', hours: 40, status: 'in-progress' },
-    { id: 'T-002', workOrderId: 'WO-2023-001', title: 'Backend API Creation', hours: 30, status: 'pending' },
-    { id: 'T-003', workOrderId: 'WO-2023-002', title: 'UI Enhancement', hours: 25, status: 'completed' },
+    { id: 'T-001', workOrderId: 'WO-2025-001', title: 'Frontend Development', hours: 40, status: 'in-progress' },
+    { id: 'T-002', workOrderId: 'WO-2025-001', title: 'Backend API Creation', hours: 30, status: 'pending' },
+    { id: 'T-003', workOrderId: 'WO-2025-002', title: 'UI Enhancement', hours: 25, status: 'completed' },
   ];
 
   return (

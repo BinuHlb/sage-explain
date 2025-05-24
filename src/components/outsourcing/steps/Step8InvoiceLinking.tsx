@@ -19,18 +19,18 @@ const Step8InvoiceLinking: React.FC<Step8InvoiceLinkingProps> = ({ viewMode }) =
   
   const mockInvoices: Invoice[] = [
     {
-      id: 'INV-2023-001',
-      workOrderId: 'WO-2023-001',
+      id: 'INV-2025-001',
+      workOrderId: 'WO-2025-001',
       amount: 12500,
-      issueDate: '2023-10-15',
+      issueDate: '2025-10-15',
       status: 'approved',
       fileUrl: '#'
     },
     {
-      id: 'INV-2023-002',
-      workOrderId: 'WO-2023-002',
+      id: 'INV-2025-002',
+      workOrderId: 'WO-2025-002',
       amount: 8750,
-      issueDate: '2023-10-18',
+      issueDate: '2025-10-18',
       status: 'pending',
       fileUrl: '#'
     }

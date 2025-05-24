@@ -126,14 +126,14 @@ const Step4Notification: React.FC<Step4NotificationProps> = ({ viewMode }) => {
           <div className="p-4 hover:bg-gray-50">
             <div className="flex justify-between">
               <div className="font-medium">Frontend Development</div>
-              <span className="text-xs text-gray-500">Assigned: Oct 16, 2023</span>
+              <span className="text-xs text-gray-500">Assigned: Oct 16, 2025</span>
             </div>
-            <p className="text-sm text-gray-600 mt-1">Part of WO-2023-001: Website Development Project</p>
+            <p className="text-sm text-gray-600 mt-1">Part of WO-2025-001: Website Development Project</p>
             <div className="mt-2 flex items-center justify-between">
               <div>
                 <span className="text-xs text-gray-500">Estimated hours: 40</span>
                 <span className="mx-2 text-gray-300">|</span>
-                <span className="text-xs text-gray-500">Due: Oct 30, 2023</span>
+                <span className="text-xs text-gray-500">Due: Oct 30, 2025</span>
               </div>
               <button className="px-3 py-1 text-sm text-blue-600 font-medium rounded-md border border-blue-200 hover:bg-blue-50">
                 View Details
@@ -144,14 +144,14 @@ const Step4Notification: React.FC<Step4NotificationProps> = ({ viewMode }) => {
           <div className="p-4 hover:bg-gray-50">
             <div className="flex justify-between">
               <div className="font-medium">Backend API Creation</div>
-              <span className="text-xs text-gray-500">Assigned: Oct 16, 2023</span>
+              <span className="text-xs text-gray-500">Assigned: Oct 16, 2025</span>
             </div>
-            <p className="text-sm text-gray-600 mt-1">Part of WO-2023-001: Website Development Project</p>
+            <p className="text-sm text-gray-600 mt-1">Part of WO-2025-001: Website Development Project</p>
             <div className="mt-2 flex items-center justify-between">
               <div>
                 <span className="text-xs text-gray-500">Estimated hours: 30</span>
                 <span className="mx-2 text-gray-300">|</span>
-                <span className="text-xs text-gray-500">Due: Nov 5, 2023</span>
+                <span className="text-xs text-gray-500">Due: Nov 5, 2025</span>
               </div>
               <button className="px-3 py-1 text-sm text-blue-600 font-medium rounded-md border border-blue-200 hover:bg-blue-50">
                 View Details
