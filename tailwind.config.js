@@ -10,6 +10,9 @@ export default {
           600: '#4838d9', 
           700: '#3528bb', }
         },
+        fontFamily: {
+          poppins: ['Poppins', 'sans-serif'],
+        },
     },
   },
   plugins: [],
