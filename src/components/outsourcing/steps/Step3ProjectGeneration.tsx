@@ -35,30 +35,11 @@ const Step3ProjectGeneration: React.FC<Step3ProjectGenerationProps> = ({ viewMod
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="md:col-span-1 border rounded-lg p-4 bg-gray-50">
-          <h3 className="text-lg font-medium mb-3">Project Templates</h3>
-          <div className="space-y-3">
-            {templates.map((template) => (
-              <div 
-                key={template.id}
-                className={`
-                  p-3 border rounded-md cursor-pointer transition-colors
-                  ${selectedTemplate === template.id 
-                    ? 'bg-blue-50 border-blue-300' 
-                    : 'bg-white hover:bg-blue-50'}
-                `}
-                onClick={() => setSelectedTemplate(template.id)}
-              >
-                <div className="font-medium">{template.name}</div>
-                <div className="text-sm text-gray-600 mt-1">{template.tasks} predefined tasks</div>
-              </div>
-            ))}
-          </div>
-        </div>
         
-        <div className="md:col-span-2 border rounded-lg p-4 bg-gray-50">
+        
+        <div className="md:col-span-3  rounded-lg">
           <h3 className="text-lg font-medium mb-3">Template Tasks</h3>
-          <div className="overflow-scroll rounded-md border border-gray-200">
+          <div className="overflow-scroll rounded-md border-gray-200">
             <table className="min-w-full divide-y divide-gray-200 border">
   <thead className="bg-gray-100">
     <tr>
@@ -158,6 +139,26 @@ const Step3ProjectGeneration: React.FC<Step3ProjectGenerationProps> = ({ viewMod
             >
               Generate Project
             </button>
+          </div>
+        </div>
+        <div className="md:col-span-3 rounded-lg">
+          <h3 className="text-lg font-medium mb-3">Project Templates</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {templates.map((template) => (
+              <div 
+                key={template.id}
+                className={`
+                  p-3 border rounded-md cursor-pointer transition-colors
+                  ${selectedTemplate === template.id 
+                    ? 'bg-blue-50 border-blue-300' 
+                    : 'bg-white hover:bg-blue-50'}
+                `}
+                onClick={() => setSelectedTemplate(template.id)}
+              >
+                <div className="font-medium">{template.name}</div>
+                <div className="text-sm text-gray-600 mt-1">{template.tasks} predefined tasks</div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

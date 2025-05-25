@@ -61,10 +61,5 @@ export const flowSteps: FlowStep[] = [
     description: 'Update performance ratings and KPI reports',
     icon: 'star'
   },
-  {
-    id: 11,
-    title: 'Post-Engagement Review',
-    description: 'Update performance ratings and KPI reports',
-    icon: 'star'
-  }
+
 ];

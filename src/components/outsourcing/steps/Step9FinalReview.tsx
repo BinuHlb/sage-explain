@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { CheckSquare, User, CalendarDays } from 'lucide-react';
+import { CheckSquare, User, } from 'lucide-react';
 
 // Define ViewMode if it's not globally available or imported from a specific type file.
 type ViewMode = 'edit' | 'view'; // Assuming ViewMode is a string literal type
@@ -74,18 +74,23 @@ const Step9FinalReview: React.FC<Step9FinalReviewProps> = ({ viewMode }) => {
 
 
   return (
-    <div className="p-4 md:p-6 lg:p-8 font-sans bg-gray-50 min-h-screen">
-      <h2 className="text-3xl font-extrabold text-gray-900 mb-8 text-center">Final Review & Sign-off</h2>
+    <div>
+       <div className="flex items-center space-x-4 mb-6">
+        <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
+          <CheckSquare className="w-6 h-6 text-blue-600" />
+        </div>
+        <div>
+          <h2 className="text-xl font-semibold text-gray-800">Final Review & Sign-off</h2>
+          <p className="text-gray-600">Input: JOF approved in Sage X3</p>
+        </div>
+      </div>
 
       {/* Approvals and KPI Checklist Section */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         {/* Approvals Card */}
         <div className="bg-white rounded-xl  border border-gray-100 overflow-hidden">
-          <div className="px-5 py-4 bg-gradient-to-r from-blue-50 to-blue-100 border-b border-blue-200">
-            <div className="flex items-center">
-              <CheckSquare className="w-6 h-6 text-blue-600 mr-3" />
-              <h3 className="text-xl font-semibold text-blue-800">Approvals</h3>
-            </div>
+          <div className="px-4 py-3 bg-blue-50 border-b">
+            <h3 className="font-medium">Approvals</h3>
           </div>
           <div className="p-5">
             <div className="space-y-4"> {/* Container for the actual rows */}
@@ -135,11 +140,8 @@ const Step9FinalReview: React.FC<Step9FinalReviewProps> = ({ viewMode }) => {
 
         {/* KPI Checklist Card */}
         <div className="bg-white rounded-xl border border-gray-100 overflow-hidden">
-          <div className="px-5 py-4 bg-gradient-to-r from-blue-50 to-blue-100 border-b border-blue-200">
-            <div className="flex items-center">
-              <CheckSquare className="w-6 h-6 text-blue-600 mr-3" />
-              <h3 className="text-xl font-semibold text-blue-800">KPI Checklist</h3>
-            </div>
+          <div className="px-4 py-3 bg-blue-50 border-b">
+            <h3 className="font-medium">KPI Checklist</h3>
           </div>
           <div className="p-5">
             <div className="space-y-3">
