@@ -7,7 +7,7 @@ interface Step2WOCreationProps {
 }
 
 const Step2WOCreation: React.FC<Step2WOCreationProps> = ({ viewMode }) => {
-  const { workOrders, subcontractors } = useOutsourcing();
+  const { workOrders, subcontractors, goToStepWithItem } = useOutsourcing();
   const [selectedWorkOrder, setSelectedWorkOrder] = useState<string | null>(null);
   const [selectedSubcontractor, setSelectedSubcontractor] = useState<string | null>(null);
 
@@ -88,17 +88,24 @@ const Step2WOCreation: React.FC<Step2WOCreationProps> = ({ viewMode }) => {
       </div>
       
       <div className="mt-6 flex justify-end">
-        <button 
-          className={`
-            px-4 py-2 rounded-md text-white font-medium
-            ${selectedWorkOrder && selectedSubcontractor 
-              ? 'bg-blue-500 hover:bg-blue-600' 
-              : 'bg-gray-300 cursor-not-allowed'}
-          `}
-          disabled={!selectedWorkOrder || !selectedSubcontractor}
-        >
-          Assign Subcontractor
-        </button>
+      <button 
+  onClick={() =>
+    goToStepWithItem(3, {
+      workOrderId: selectedWorkOrder,
+      subcontractorId: selectedSubcontractor,
+    })
+  }
+  className={`
+    px-4 py-2 rounded-md text-white font-medium
+    ${selectedWorkOrder && selectedSubcontractor 
+      ? 'bg-blue-500 hover:bg-blue-600' 
+      : 'bg-gray-300 cursor-not-allowed'}
+  `}
+  disabled={!selectedWorkOrder || !selectedSubcontractor}
+>
+  Assign Subcontractor & Proceed →
+</button>
+
       </div>
     </div>
   );

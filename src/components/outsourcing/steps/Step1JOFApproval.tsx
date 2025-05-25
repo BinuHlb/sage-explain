@@ -128,6 +128,7 @@ const Step1JOFApproval: React.FC<Step1JOFApprovalProps> = ({ viewMode }) => {
   // State for row click modal
   const [selectedItem, setSelectedItem] = useState<JofWoDataItem | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [editableItem, setEditableItem] = useState<Partial<JofWoDataItem> | null>(null); // State for editable data
 
   // Memoized filtered and sorted data
   const processedData = useMemo(() => {
@@ -206,11 +207,23 @@ const Step1JOFApproval: React.FC<Step1JOFApprovalProps> = ({ viewMode }) => {
   const handleRowClick = (item: JofWoDataItem) => {
     setSelectedItem(item);
     setIsModalOpen(true);
+ setEditableItem(item); // Initialize editable state with selected item data
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedItem(null);
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setEditableItem(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSaveChanges = () => {
+    console.log("Saving changes:", editableItem);
+    // In a real application, you would dispatch an action to update the data here.
+    closeModal();
   };
 
   // Column headers with their corresponding data keys
@@ -467,43 +480,72 @@ const Step1JOFApproval: React.FC<Step1JOFApprovalProps> = ({ viewMode }) => {
       {/* Row Details Modal */}
       {isModalOpen && selectedItem && (
         <div className="fixed inset-0 bg-gray-600 bg-opacity-75 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-lg shadow-xl p-6 w-full max-w-md md:max-w-lg lg:max-w-xl max-h-[90vh] overflow-y-auto">
+          <div className="bg-white rounded-lg shadow-xl p-6 w-full  max-h-[90vh] overflow-y-auto">
             <h3 className="text-xl font-bold text-gray-900 mb-4 border-b pb-2">JOF/WO Details: {selectedItem.jofId}</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-700">
-              <p><strong>JOF ID:</strong> {selectedItem.jofId}</p>
-              <p><strong>WO ID:</strong> {selectedItem.woId}</p>
-              <p><strong>Verified By:</strong> {selectedItem.verifiedBy}</p>
-              <p><strong>Reg Auth:</strong> {selectedItem.regAuth}</p>
-              <p><strong>Signed On:</strong> {selectedItem.signedOn}</p>
-              <p><strong>Project Code:</strong> {selectedItem.projectCode}</p>
-              <p><strong>Coat:</strong> {selectedItem.coat}</p>
-              <p><strong>Date:</strong> {selectedItem.date}</p>
-              <p><strong>Scope:</strong> {selectedItem.scope}</p>
-              <p><strong>Category:</strong> {selectedItem.category}</p>
-              <p><strong>Fees:</strong> ${selectedItem.fees.toLocaleString()}</p>
-              <p><strong>Signed Year:</strong> {selectedItem.signedYear}</p>
-              <p><strong>Managers:</strong> {selectedItem.manager}</p>
-              <p><strong>Report Type:</strong> {selectedItem.reportType}</p>
-              <p><strong>Period:</strong> {selectedItem.period}</p>
-              <p><strong>Date of Report:</strong> {selectedItem.reportDate}</p>
-              <p><strong>Job Status:</strong>
-                <span className={`ml-2 px-2 py-1 text-xs rounded-full ${
-                  selectedItem.jobStatus === 'Completed'
-                    ? 'bg-green-100 text-green-800'
-                    : selectedItem.jobStatus === 'In Progress'
-                    ? 'bg-yellow-100 text-yellow-800'
-                    : 'bg-red-100 text-red-800'
-                }`}>
-                  {selectedItem.jobStatus}
-                </span>
-              </p>
+            <div className="grid grid-cols-1 sm:grid-cols-10 gap-4">
+              {tableHeaders.map((header) => (
+                <div key={header.key} className="flex flex-col">
+                  <label htmlFor={header.key} className="text-sm font-medium text-gray-700 mb-1">
+                    {header.label}:
+                  </label>
+                  {header.key === 'jobStatus' ? (
+                    // Special handling for job status - maybe a dropdown in a real app
+                    <input
+                      type="text"
+                      id={header.key}
+ name={header.key}
+ value={editableItem[header.key] as string | number | readonly string[] | undefined || ''}
+ onChange={handleInputChange}
+                      className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                    />
+                  ) : header.key === 'fees' || header.key === 'signedYear' ? (
+                    // Handle numeric inputs
+                    <input
+                      type="number"
+                      id={header.key}
+ name={header.key}
+ value={editableItem[header.key] as number | string | readonly string[] | undefined || ''}
+ onChange={handleInputChange}
+                      className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                    />
+                  ) : header.key === 'date' || header.key === 'reportDate' || header.key === 'signedOn' ? (
+                    // Handle date inputs
+                    <input
+                      type="date"
+                      id={header.key}
+ name={header.key}
+ value={editableItem[header.key] as string | number | readonly string[] | undefined || ''}
+ onChange={handleInputChange}
+                      className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                    />
+                  ) : (
+                    // Default to text input for other fields
+                    <input
+                      type="text"
+                      id={header.key}
+ name={header.key}
+ value={editableItem[header.key] as string | number | readonly string[] | undefined || ''}
+ onChange={handleInputChange}
+                      className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                    />
+                  )}
+                </div>
+              ))}
             </div>
-            <button
-              onClick={closeModal}
-              className="mt-6 px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200"
-            >
-              Close
-            </button>
+            <div className="flex justify-end space-x-4 mt-6">
+              <button
+                onClick={closeModal}
+                className="px-6 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleSaveChanges}
+                className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200"
+              >
+                Save Changes
+              </button>
+            </div>
           </div>
         </div>
       )}

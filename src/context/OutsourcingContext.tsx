@@ -6,11 +6,14 @@ interface OutsourcingContextType {
   setCurrentStep: (step: number) => void;
   selectedWorkOrder: WorkOrder | null;
   setSelectedWorkOrder: (workOrder: WorkOrder | null) => void;
+  selectedItem: any; // Using 'any' for flexibility based on JofWoDataItem
+  setSelectedItem: (item: any | null) => void; // Using 'any' for flexibility
   workOrders: WorkOrder[];
   subcontractors: Subcontractor[];
   tasks: Task[];
   viewMode: 'manager' | 'subcontractor' | 'reviewer';
   setViewMode: (mode: 'manager' | 'subcontractor' | 'reviewer') => void;
+  goToStepWithItem: (step: number, item: any | null) => void;
 }
 
 const defaultContext: OutsourcingContextType = {
@@ -18,11 +21,14 @@ const defaultContext: OutsourcingContextType = {
   setCurrentStep: () => {},
   selectedWorkOrder: null,
   setSelectedWorkOrder: () => {},
+  selectedItem: null,
+  setSelectedItem: () => {},
   workOrders: [],
   subcontractors: [],
   tasks: [],
   viewMode: 'manager',
   setViewMode: () => {},
+  goToStepWithItem: () => {},
 };
 
 export const OutsourcingContext = createContext<OutsourcingContextType>(defaultContext);
@@ -32,6 +38,7 @@ export const useOutsourcing = () => useContext(OutsourcingContext);
 export const OutsourcingProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedWorkOrder, setSelectedWorkOrder] = useState<WorkOrder | null>(null);
+  const [selectedItem, setSelectedItem] = useState<any | null>(null); // State for selected item
   const [viewMode, setViewMode] = useState<'manager' | 'subcontractor' | 'reviewer'>('manager');
   
   // Mock data
@@ -53,11 +60,17 @@ export const OutsourcingProvider: React.FC<{ children: ReactNode }> = ({ childre
     { id: 'T-003', workOrderId: 'WO-2023-002', title: 'UI Enhancement', hours: 25, status: 'completed' },
   ];
 
+  const goToStepWithItem = (step: number, item: any | null) => {
+    setCurrentStep(step);
+    setSelectedItem(item);
+  };
+
   return (
     <OutsourcingContext.Provider
       value={{
         currentStep,
         setCurrentStep,
+        selectedItem, // Provide selectedItem
         selectedWorkOrder,
         setSelectedWorkOrder,
         workOrders,
@@ -65,6 +78,7 @@ export const OutsourcingProvider: React.FC<{ children: ReactNode }> = ({ childre
         tasks,
         viewMode,
         setViewMode,
+        goToStepWithItem,
       }}
     >
       {children}
