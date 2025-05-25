@@ -80,7 +80,7 @@ const Step9FinalReview: React.FC<Step9FinalReviewProps> = ({ viewMode }) => {
       {/* Approvals and KPI Checklist Section */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         {/* Approvals Card */}
-        <div className="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden">
+        <div className="bg-white rounded-xl  border border-gray-100 overflow-hidden">
           <div className="px-5 py-4 bg-gradient-to-r from-blue-50 to-blue-100 border-b border-blue-200">
             <div className="flex items-center">
               <CheckSquare className="w-6 h-6 text-blue-600 mr-3" />
@@ -134,7 +134,7 @@ const Step9FinalReview: React.FC<Step9FinalReviewProps> = ({ viewMode }) => {
         </div>
 
         {/* KPI Checklist Card */}
-        <div className="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden">
+        <div className="bg-white rounded-xl border border-gray-100 overflow-hidden">
           <div className="px-5 py-4 bg-gradient-to-r from-blue-50 to-blue-100 border-b border-blue-200">
             <div className="flex items-center">
               <CheckSquare className="w-6 h-6 text-blue-600 mr-3" />

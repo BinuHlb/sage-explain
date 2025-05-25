@@ -7,84 +7,84 @@ import { useOutsourcing } from '../../../context/OutsourcingContext';
 // Ensure this file is in the same directory as Step1JOFApproval.tsx or adjust the import path.
 export const jofWoData = [
   {
-    jofId: 'JOF-2025-001', woId: 'WO-2025-001', verifiedBy: 'John Doe', regAuth: 'NY',
+    jofId: 'JOF-2025-001', woId: 'WO/HLB/20/0014', verifiedBy: 'John Doe', regAuth: 'NY',
     signedOn: '2025-10-15', projectCode: 'WEBDEV-001', coat: 'A', date: '2025-10-15',
     scope: 'Website Build', category: 'IT', fees: 15000, jobStatus: 'Completed',
     signedYear: 2025, manager: 'Alice Smith', reportType: 'Monthly', period: 'Q4',
     reportDate: '2025-11-01'
   },
   {
-    jofId: 'JOF-2025-002', woId: 'WO-2025-002', verifiedBy: 'Jane Doe', regAuth: 'CA',
+    jofId: 'JOF-2025-002', woId: 'WO/HLB/29/0054', verifiedBy: 'Jane Doe', regAuth: 'CA',
     signedOn: '2025-10-18', projectCode: 'MOBILE-002', coat: 'B', date: '2025-10-18',
     scope: 'Mobile App Dev', category: 'IT', fees: 20000, jobStatus: 'In Progress',
     signedYear: 2025, manager: 'Bob Johnson', reportType: 'Quarterly', period: 'Q4',
     reportDate: '2025-11-05'
   },
   {
-    jofId: 'JOF-2025-003', woId: 'WO-2025-003', verifiedBy: 'Peter Jones', regAuth: 'TX',
+    jofId: 'JOF-2025-003', woId: 'WO/DEF/20/0014', verifiedBy: 'Peter Jones', regAuth: 'TX',
     signedOn: '2025-09-20', projectCode: 'CONSULT-003', coat: 'C', date: '2025-09-20',
     scope: 'Consulting Services', category: 'Services', fees: 5000, jobStatus: 'Completed',
     signedYear: 2025, manager: 'Alice Smith', reportType: 'Annual', period: 'FY',
     reportDate: '2025-10-01'
   },
   {
-    jofId: 'JOF-2025-004', woId: 'WO-2025-004', verifiedBy: 'Sarah Lee', regAuth: 'FL',
+    jofId: 'JOF-2025-004', woId: 'WO/DEF/20/0004', verifiedBy: 'Sarah Lee', regAuth: 'FL',
     signedOn: '2025-11-01', projectCode: 'MARKET-004', coat: 'A', date: '2025-11-01',
     scope: 'Marketing Campaign', category: 'Marketing', fees: 8000, jobStatus: 'Pending',
     signedYear: 2025, manager: 'Charlie Brown', reportType: 'Monthly', period: 'Q4',
     reportDate: '2025-11-10'
   },
   {
-    jofId: 'JOF-2025-005', woId: 'WO-2025-005', verifiedBy: 'David Kim', regAuth: 'GA',
+    jofId: 'JOF-2025-005', woId: 'WO/HLB/28/0019', verifiedBy: 'David Kim', regAuth: 'GA',
     signedOn: '2025-10-25', projectCode: 'HR-005', coat: 'B', date: '2025-10-25',
     scope: 'HR System Upgrade', category: 'HR', fees: 12000, jobStatus: 'In Progress',
     signedYear: 2025, manager: 'Bob Johnson', reportType: 'Quarterly', period: 'Q4',
     reportDate: '2025-11-08'
   },
   {
-    jofId: 'JOF-2025-006', woId: 'WO-2025-006', verifiedBy: 'Emily Chen', regAuth: 'WA',
+    jofId: 'JOF-2025-006', woId: 'WO/HLB/20/0014', verifiedBy: 'Emily Chen', regAuth: 'WA',
     signedOn: '2025-09-10', projectCode: 'DESIGN-006', coat: 'C', date: '2025-09-10',
     scope: 'UI/UX Design', category: 'Design', fees: 7500, jobStatus: 'Completed',
     signedYear: 2025, manager: 'Alice Smith', reportType: 'Monthly', period: 'Q3',
     reportDate: '2025-10-05'
   },
   {
-    jofId: 'JOF-2025-007', woId: 'WO-2025-007', verifiedBy: 'Frank White', regAuth: 'OR',
+    jofId: 'JOF-2025-007', woId: 'WO/DEF/20/8865', verifiedBy: 'Frank White', regAuth: 'OR',
     signedOn: '2025-11-15', projectCode: 'SALES-007', coat: 'A', date: '2025-11-15',
     scope: 'Sales Training', category: 'Sales', fees: 6000, jobStatus: 'Pending',
     signedYear: 2025, manager: 'Charlie Brown', reportType: 'Annual', period: 'FY',
     reportDate: '2025-11-20'
   },
   {
-    jofId: 'JOF-2025-008', woId: 'WO-2025-008', verifiedBy: 'Grace Hall', regAuth: 'AZ',
+    jofId: 'JOF-2025-008', woId: 'WO/HLB/20/7765', verifiedBy: 'Grace Hall', regAuth: 'AZ',
     signedOn: '2025-10-01', projectCode: 'OPS-008', coat: 'B', date: '2025-10-01',
     scope: 'Operations Review', category: 'Operations', fees: 9000, jobStatus: 'Completed',
     signedYear: 2025, manager: 'Bob Johnson', reportType: 'Quarterly', period: 'Q4',
     reportDate: '2025-10-10'
   },
   {
-    jofId: 'JOF-2025-009', woId: 'WO-2025-009', verifiedBy: 'Henry Green', regAuth: 'CO',
+    jofId: 'JOF-2025-009', woId: 'WO/HLB/20/0014', verifiedBy: 'Henry Green', regAuth: 'CO',
     signedOn: '2025-11-20', projectCode: 'FINANCE-009', coat: 'C', date: '2025-11-20',
     scope: 'Financial Audit', category: 'Finance', fees: 18000, jobStatus: 'In Progress',
     signedYear: 2025, manager: 'Alice Smith', reportType: 'Monthly', period: 'Q4',
     reportDate: '2025-11-25'
   },
   {
-    jofId: 'JOF-2025-010', woId: 'WO-2025-010', verifiedBy: 'Ivy Black', regAuth: 'NV',
+    jofId: 'JOF-2025-010', woId: 'WO/HLB/20/0089', verifiedBy: 'Ivy Black', regAuth: 'NV',
     signedOn: '2025-09-05', projectCode: 'LEGAL-010', coat: 'A', date: '2025-09-05',
     scope: 'Legal Review', category: 'Legal', fees: 4000, jobStatus: 'Completed',
     signedYear: 2025, manager: 'Charlie Brown', reportType: 'Annual', period: 'FY',
     reportDate: '2025-09-15'
   },
   {
-    jofId: 'JOF-2025-011', woId: 'WO-2025-011', verifiedBy: 'Jack White', regAuth: 'UT',
+    jofId: 'JOF-2025-011', woId: 'WO/GHT/32/4436', verifiedBy: 'Jack White', regAuth: 'UT',
     signedOn: '2025-12-01', projectCode: 'IT-011', coat: 'B', date: '2025-12-01',
     scope: 'Network Upgrade', category: 'IT', fees: 25000, jobStatus: 'Pending',
     signedYear: 2025, manager: 'Bob Johnson', reportType: 'Monthly', period: 'Q4',
     reportDate: '2025-12-05'
   },
   {
-    jofId: 'JOF-2025-012', woId: 'WO-2025-012', verifiedBy: 'Karen Green', regAuth: 'ID',
+    jofId: 'JOF-2025-012', woId: 'WO/HLB/20/0014', verifiedBy: 'Karen Green', regAuth: 'ID',
     signedOn: '2025-11-10', projectCode: 'HR-012', coat: 'C', date: '2025-11-10',
     scope: 'Employee Training', category: 'HR', fees: 7000, jobStatus: 'In Progress',
     signedYear: 2025, manager: 'Alice Smith', reportType: 'Quarterly', period: 'Q4',
@@ -253,7 +253,7 @@ const Step1JOFApproval: React.FC<Step1JOFApprovalProps> = ({ viewMode }) => {
   ];
 
   const renderManagerView = () => (
-    <div className="p-4 sm:p-6 lg:p-8"> {/* Added responsive padding */}
+    <div> {/* Added responsive padding */}
       <div className="flex items-center space-x-4 mb-6">
         <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
           <FileText className="w-6 h-6 text-blue-600" />
@@ -264,7 +264,7 @@ const Step1JOFApproval: React.FC<Step1JOFApprovalProps> = ({ viewMode }) => {
         </div>
       </div>
 
-      <div className="relative p-4 bg-gray-50 rounded-lg shadow-md mb-8">
+      <div className="relative mb-8">
         <h3 className="text-lg font-medium mb-2">JOF to WO Conversion Log</h3>
         {/* Made scroll message more prominent */}
         <p className="text-sm font-semibold text-blue-600 mb-3 animate-pulse">
@@ -413,6 +413,20 @@ const Step1JOFApproval: React.FC<Step1JOFApprovalProps> = ({ viewMode }) => {
 
       {/* Workflow Integration Section */}
       <div className="space-y-4">
+      <div className="bg-blue-50 p-4 rounded-lg border border-blue-100 shadow-sm">
+          <div className="flex items-start">
+            <div className="mr-3 mt-1">
+              <CheckCircle className="w-5 h-5 text-blue-500" />
+            </div>
+            <div>
+              <h4 className="font-medium text-blue-700">Automatic Integration</h4>
+              <p className="text-sm text-blue-600 mt-1">
+                When a JOF is approved in Sage X3, an API trigger automatically creates a corresponding Work Order in the PMS system.
+                This ensures seamless workflow transition without manual intervention.
+              </p>
+            </div>
+          </div>
+        </div>
         <div className="flex flex-col md:flex-row items-start md:space-x-8 space-y-8 md:space-y-0">
           <div className="flex-1 border rounded-lg p-4 bg-gray-50 shadow-sm w-full">
             <h3 className="text-lg font-medium mb-2">Sage X3</h3>
@@ -446,7 +460,7 @@ const Step1JOFApproval: React.FC<Step1JOFApprovalProps> = ({ viewMode }) => {
             <div className="space-y-3">
               <div className="p-3 bg-white border rounded-md shadow-sm">
                 <div className="flex justify-between">
-                  <span className="font-medium">WO-2025-001</span>
+                  <span className="font-medium">WO/HLB/20/0014</span>
                   <span className="px-2 py-1 text-xs rounded-full bg-blue-100 text-blue-800">Created</span>
                 </div>
                 <p className="text-sm text-gray-600 mt-1">Linked to JOF-2025-001</p>
@@ -465,20 +479,7 @@ const Step1JOFApproval: React.FC<Step1JOFApprovalProps> = ({ viewMode }) => {
           </div>
         </div>
 
-        <div className="bg-blue-50 p-4 rounded-lg border border-blue-100 shadow-sm">
-          <div className="flex items-start">
-            <div className="mr-3 mt-1">
-              <CheckCircle className="w-5 h-5 text-blue-500" />
-            </div>
-            <div>
-              <h4 className="font-medium text-blue-700">Automatic Integration</h4>
-              <p className="text-sm text-blue-600 mt-1">
-                When a JOF is approved in Sage X3, an API trigger automatically creates a corresponding Work Order in the PMS system.
-                This ensures seamless workflow transition without manual intervention.
-              </p>
-            </div>
-          </div>
-        </div>
+       
       </div>
 
       {/* Row Details Modal */}
@@ -595,7 +596,7 @@ const Step1JOFApproval: React.FC<Step1JOFApprovalProps> = ({ viewMode }) => {
           <tbody className="bg-white divide-y divide-gray-200">
             <tr>
               <td className="px-4 py-3 text-sm whitespace-nowrap">JOF-2025-001</td>
-              <td className="px-4 py-3 text-sm whitespace-nowrap">WO-2025-001</td>
+              <td className="px-4 py-3 text-sm whitespace-nowrap">WO/HLB/20/0016</td>
               <td className="px-4 py-3 text-sm whitespace-nowrap">10/15/2025 09:32 AM</td>
               <td className="px-4 py-3 whitespace-nowrap">
                 <span className="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800">Success</span>
