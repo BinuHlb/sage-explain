@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { FileText, ArrowRight, CheckCircle, ChevronUp, ChevronDown } from 'lucide-react'; // Added ChevronUp/Down for sort icons
-
+import { useOutsourcing } from '../../../context/OutsourcingContext';
 
 // --- jofData.ts (Simulated Data) ---
 // In a real application, this would likely come from an API or a larger data source.
@@ -117,6 +117,10 @@ interface Step1JOFApprovalProps {
 }
 
 const Step1JOFApproval: React.FC<Step1JOFApprovalProps> = ({ viewMode }) => {
+  const {goToStepWithItem } = useOutsourcing();
+
+  const [selectedWorkOrder] = useState<string | null>(null);
+  const [selectedSubcontractor] = useState<string | null>(null);
   // State for search/filter functionality
   const [searchTerm, setSearchTerm] = useState<string>('');
   // State for sorting functionality: { key: column_key, direction: 'asc' | 'desc' }
@@ -539,12 +543,22 @@ const Step1JOFApproval: React.FC<Step1JOFApprovalProps> = ({ viewMode }) => {
               >
                 Cancel
               </button>
-              <button
-                onClick={handleSaveChanges}
-                className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200"
-              >
-                Save Changes
-              </button>
+              <button 
+  onClick={() =>
+    goToStepWithItem(2, {
+      workOrderId: selectedWorkOrder,
+      subcontractorId: selectedSubcontractor,
+    })
+  }
+  className={`
+    px-4 py-2 rounded-md text-white font-medium
+    ${selectedWorkOrder && selectedSubcontractor 
+      ? 'bg-blue-500 hover:bg-blue-600' 
+      : 'bg-blue-500'}
+  `}
+>
+  Proceed →
+</button>
             </div>
           </div>
         </div>
