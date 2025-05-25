@@ -17,7 +17,7 @@ export const Sidebar: React.FC = () => {
       <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
         <SidebarItem icon={<Home className="w-5 h-5" />} label="Dashboard" isActive={false} />
         <SidebarItem icon={<FileText className="w-5 h-5" />} label="Projects" isActive={false} />
-        <SidebarItem icon={<ExternalLink className="w-5 h-5" />} label="Outsourcing" isActive={true} />
+        <SidebarItem icon={<ExternalLink className="w-5 h-5" />} label="Control Sheet" isActive={true} />
         <SidebarItem icon={<Users className="w-5 h-5" />} label="Subcontractors" isActive={false} />
         <SidebarItem icon={<Calendar className="w-5 h-5" />} label="Schedule" isActive={false} />
         <SidebarItem icon={<BarChart2 className="w-5 h-5" />} label="Reports" isActive={false} />

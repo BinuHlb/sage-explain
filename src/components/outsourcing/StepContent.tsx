@@ -18,7 +18,7 @@ const StepContent: React.FC = () => {
   const renderStepContent = () => {
     switch (currentStep) {
       case 1:
-        return <Step1JOFApproval viewMode={viewMode} />;
+        return <Step1JOFApproval viewMode={viewMode}  />;
       case 2:
         return <Step2WOCreation viewMode={viewMode} />;
       case 3:

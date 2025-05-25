@@ -130,16 +130,16 @@ const Step2WOCreation: React.FC<Step2WOCreationProps> = ({ viewMode }) => {
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
           <tr>
-            <td className="px-4 py-3 text-sm">WO-2025-001</td>
+            <td className="px-4 py-3 text-sm">WO-2023-001</td>
             <td className="px-4 py-3 text-sm">TechSolutions Inc</td>
             <td className="px-4 py-3 text-sm">John Manager</td>
-            <td className="px-4 py-3 text-sm">10/16/2025</td>
+            <td className="px-4 py-3 text-sm">10/16/2023</td>
           </tr>
           <tr>
-            <td className="px-4 py-3 text-sm">WO-2025-002</td>
+            <td className="px-4 py-3 text-sm">WO-2023-002</td>
             <td className="px-4 py-3 text-sm">DevPro Services</td>
             <td className="px-4 py-3 text-sm">Jane Manager</td>
-            <td className="px-4 py-3 text-sm">10/19/2025</td>
+            <td className="px-4 py-3 text-sm">10/19/2023</td>
           </tr>
         </tbody>
       </table>
