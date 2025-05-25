@@ -253,7 +253,7 @@ const Step1JOFApproval: React.FC<Step1JOFApprovalProps> = ({ viewMode }) => {
   ];
 
   const renderManagerView = () => (
-    <div> {/* Added responsive padding */}
+    <div className='relative'> {/* Added responsive padding */}
       <div className="flex items-center space-x-4 mb-6">
         <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
           <FileText className="w-6 h-6 text-blue-600" />
@@ -484,10 +484,10 @@ const Step1JOFApproval: React.FC<Step1JOFApprovalProps> = ({ viewMode }) => {
 
       {/* Row Details Modal */}
       {isModalOpen && selectedItem && (
-        <div className="fixed inset-0 bg-gray-600 bg-opacity-75 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-lg shadow-xl p-6 w-full  max-h-[90vh] overflow-y-auto">
-            <h3 className="text-xl font-bold text-gray-900 mb-4 border-b pb-2">JOF/WO Details: {selectedItem.jofId}</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-10 gap-4">
+        <div className="absolute inset-0 bg-gray-600 bg-opacity-75 flex items-center justify-center z-50">
+          <div className="bg-white  w-full  h-full overflow-y-auto">
+            <h2 className="text-xl font-semibold text-gray-800 mb-6">JOF/WO Details: {selectedItem.jofId}</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-5 gap-4">
               {tableHeaders.map((header) => (
                 <div key={header.key} className="flex flex-col">
                   <label htmlFor={header.key} className="text-sm font-medium text-gray-700 mb-1">
