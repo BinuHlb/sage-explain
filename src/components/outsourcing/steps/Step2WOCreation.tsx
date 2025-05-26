@@ -270,7 +270,7 @@ const Step2WOCreation: React.FC<Step2WOCreationProps> = ({ viewMode }) => {
                     className={`
                     p-3 border rounded-md cursor-pointer transition-colors
                     ${selectedSubcontractor === sc.id 
-                        ? 'bg-blue-100 border-blue-400 ring-2 ring-blue-300' 
+                        ? 'bg-blue-100 border-blue-400 ring-blue-300' 
                         : 'bg-gray-50 hover:bg-blue-50 border-gray-200'}
                     `}
                     onClick={() => setSelectedSubcontractor(sc.id)}
