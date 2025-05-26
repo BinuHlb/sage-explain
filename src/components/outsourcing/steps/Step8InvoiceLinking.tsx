@@ -112,7 +112,7 @@ const Step8InvoiceLinking: React.FC<Step8InvoiceLinkingProps> = ({ viewMode }) =
           </div>
         </div>
 
-        <div className="md:col-span-3">
+        {/* <div className="md:col-span-3">
           <div className="bg-white rounded-lg border overflow-hidden">
             <div className="px-4 py-3 bg-blue-50 border-b">
               <h3 className="font-medium">Upload New Invoice</h3>
@@ -167,7 +167,7 @@ const Step8InvoiceLinking: React.FC<Step8InvoiceLinkingProps> = ({ viewMode }) =
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
