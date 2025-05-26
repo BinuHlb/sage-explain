@@ -55,7 +55,7 @@ const Step8InvoiceLinking: React.FC<Step8InvoiceLinkingProps> = ({ viewMode }) =
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="md:col-span-2">
+        <div className="md:col-span-3">
           <div className="bg-white rounded-lg border overflow-hidden">
             <div className="px-4 py-3 bg-blue-50 border-b">
               <h3 className="font-medium">Invoice List</h3>
@@ -112,7 +112,7 @@ const Step8InvoiceLinking: React.FC<Step8InvoiceLinkingProps> = ({ viewMode }) =
           </div>
         </div>
 
-        <div className="md:col-span-1">
+        <div className="md:col-span-3">
           <div className="bg-white rounded-lg border overflow-hidden">
             <div className="px-4 py-3 bg-blue-50 border-b">
               <h3 className="font-medium">Upload New Invoice</h3>
