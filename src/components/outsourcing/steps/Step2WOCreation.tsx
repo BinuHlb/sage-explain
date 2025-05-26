@@ -1,19 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { FilePlus, User, Users } from 'lucide-react';
-import { useOutsourcing } from '../../../context/OutsourcingContext'; // Ensure this path is correct
+import { useOutsourcing } from '../../../context/OutsourcingContext';
 
-// Define types if not already globally available or imported from context
-// (These should ideally match the types provided by your useOutsourcing context)
 interface WorkOrder {
   id: string;
   title: string;
-  status: 'pending' | 'in-progress' | 'completed' | string; // Allow for other statuses
+  status: 'pending' | 'in-progress' | 'completed' | string;
   jofId: string;
-  // Add optional fields that your form will manage if they are part of the WorkOrder object
   category?: string;
   reportType?: string;
   reportingPeriod?: string;
-  startDate?: string; // Store as YYYY-MM-DD for date input
+  startDate?: string;
   fileType?: string;
   engagementPartner?: string;
   engagementManager?: string;
@@ -25,24 +22,20 @@ interface Subcontractor {
   email: string;
 }
 
-// --- EditableForm Component ---
-// Recommendation: Place this in a separate file (e.g., EditableForm.tsx) and import it.
-// For this example, it's included here for completeness.
-
 interface EditableFormField {
-  name: string; // Unique identifier for the field
-  label: string; // Display label
-  type: 'text' | 'date' | 'select' | 'number'; // Input type
-  options?: { value: string; label: string }[]; // For type 'select'
+  name: string;
+  label: string;
+  type: 'text' | 'date' | 'select' | 'number';
+  options?: { value: string; label: string }[];
 }
 
 interface EditableFormProps {
   fieldsConfig: EditableFormField[];
-  initialData: Record<string, any>; // Initial values for the form fields
-  staticFields?: string[]; // Array of field names to be displayed as static text
-  onFormChange?: (updatedData: Record<string, any>) => void; // Callback when form data changes
-  workOrderDataForStaticDisplay?: Record<string, any>; // Data for fields that are static and come directly from WO
-  viewMode?: 'manager' | 'subcontractor' | 'reviewer'; // Optional: to control editability further
+  initialData: Record<string, any>;
+  staticFields?: string[];
+  onFormChange?: (updatedData: Record<string, any>) => void;
+  workOrderDataForStaticDisplay?: Record<string, any>;
+  viewMode?: 'manager' | 'subcontractor' | 'reviewer';
 }
 
 const EditableForm: React.FC<EditableFormProps> = ({
@@ -51,13 +44,10 @@ const EditableForm: React.FC<EditableFormProps> = ({
   staticFields = [],
   onFormChange,
   workOrderDataForStaticDisplay = {},
-  // viewMode // Could be used to make all fields static based on viewMode, for example
 }) => {
   const [formData, setFormData] = useState<Record<string, any>>({});
 
   useEffect(() => {
-    // Use a deep copy of initialData to prevent direct state mutation issues
-    // This ensures that formData is reset correctly when initialData changes (e.g., new WO selected)
     setFormData(initialData ? JSON.parse(JSON.stringify(initialData)) : {});
   }, [initialData]);
 
@@ -75,8 +65,6 @@ const EditableForm: React.FC<EditableFormProps> = ({
       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
         {fieldsConfig.map((field) => {
           const isStatic = staticFields.includes(field.name);
-          // For static fields, prioritize workOrderDataForStaticDisplay if the key exists.
-          // Otherwise, use the value from formData (which was initialized by initialData).
           const displayValue = isStatic
             ? workOrderDataForStaticDisplay.hasOwnProperty(field.name)
               ? workOrderDataForStaticDisplay[field.name]
@@ -122,8 +110,6 @@ const EditableForm: React.FC<EditableFormProps> = ({
     </div>
   );
 };
-// --- End of EditableForm Component ---
-
 
 interface Step2WOCreationProps {
   viewMode: 'manager' | 'subcontractor' | 'reviewer';
@@ -131,51 +117,53 @@ interface Step2WOCreationProps {
 
 const Step2WOCreation: React.FC<Step2WOCreationProps> = ({ viewMode }) => {
   const { workOrders: contextWorkOrders = [], subcontractors = [], goToStepWithItem } = useOutsourcing();
-  // Ensure workOrders is always an array and type it
   const workOrders: WorkOrder[] = contextWorkOrders as WorkOrder[];
 
   const [selectedWorkOrderId, setSelectedWorkOrderId] = useState<string | null>(null);
   const [selectedSubcontractor, setSelectedSubcontractor] = useState<string | null>(null);
   const [engagementFormData, setEngagementFormData] = useState<Record<string, any>>({});
+  const [isLoading, setIsLoading] = useState(false);
 
   const currentWorkOrder = selectedWorkOrderId ? workOrders.find(wo => wo.id === selectedWorkOrderId) : null;
 
+  // Automatically select the first work order when available
+  useEffect(() => {
+    if (workOrders.length > 0 && !selectedWorkOrderId) {
+      setSelectedWorkOrderId(workOrders[0].id);
+    }
+  }, [workOrders]);
+
   useEffect(() => {
     if (currentWorkOrder) {
-      // Populate form with selected work order data and defaults for new fields
       setEngagementFormData({
-        // Fields from your list (editable)
         category: currentWorkOrder.category || '',
         reportType: currentWorkOrder.reportType || '',
         reportingPeriod: currentWorkOrder.reportingPeriod || '',
-        startDate: currentWorkOrder.startDate || '', // Ensure YYYY-MM-DD for date input
-        jobStatus: currentWorkOrder.status || 'pending', // Use WO status or default
+        startDate: currentWorkOrder.startDate || '',
+        jobStatus: currentWorkOrder.status || 'pending',
         fileType: currentWorkOrder.fileType || '',
         engagementPartner: currentWorkOrder.engagementPartner || '',
         engagementManager: currentWorkOrder.engagementManager || '',
       });
     } else {
-      // Reset form if no WO is selected
       setEngagementFormData({
         category: '', reportType: '', reportingPeriod: '', startDate: '',
         jobStatus: 'pending', fileType: '', engagementPartner: '', engagementManager: '',
       });
     }
-  }, [currentWorkOrder]); // Re-run when currentWorkOrder changes
+  }, [currentWorkOrder]);
 
   const handleEngagementFormChange = (updatedData: Record<string, any>) => {
     setEngagementFormData(updatedData);
   };
 
-  // Configuration for the fields in the Engagement Detail form
   const engagementFieldsConfig: EditableFormField[] = [
     { name: 'woIdDisplay', label: 'Work Order ID', type: 'text' },
     { name: 'woTitleDisplay', label: 'Work Order Title', type: 'text' },
     { name: 'woJofIdDisplay', label: 'JOF ID', type: 'text' },
-    // Your 8 requested fields:
     { name: 'category', label: 'Category', type: 'text' },
     { name: 'reportType', label: 'Report Type', type: 'text' },
-    { name: 'reportingPeriod', label: 'Reporting Period', type: 'text' }, // Consider a date range picker component for better UX
+    { name: 'reportingPeriod', label: 'Reporting Period', type: 'text' },
     { name: 'startDate', label: 'Start Date', type: 'date' },
     { 
       name: 'jobStatus', 
@@ -186,7 +174,6 @@ const Step2WOCreation: React.FC<Step2WOCreationProps> = ({ viewMode }) => {
         { value: 'in-progress', label: 'In Progress' },
         { value: 'completed', label: 'Completed' },
         { value: 'on-hold', label: 'On Hold' },
-        // Add other relevant statuses
       ] 
     },
     { 
@@ -206,23 +193,12 @@ const Step2WOCreation: React.FC<Step2WOCreationProps> = ({ viewMode }) => {
     { name: 'engagementManager', label: 'Engagement Manager', type: 'text' },
   ];
 
-  // Specify which fields should be static (non-editable)
-  // These will typically be fields directly from the selected Work Order
   const staticEngagementFields = ['woIdDisplay', 'woTitleDisplay', 'woJofIdDisplay'];
-  // If jobStatus from the original WO should be static and NOT editable via the form, 
-  // you would add 'jobStatus' to staticEngagementFields and ensure its value is directly pulled
-  // from currentWorkOrder in workOrderDataForStaticDisplay.
-  // However, as it's in engagementFieldsConfig with type 'select', it's currently set up to be editable.
-
-  // Data to be displayed in static fields, taken directly from the currentWorkOrder
   const workOrderSpecificStaticData = currentWorkOrder ? {
     woIdDisplay: currentWorkOrder.id,
     woTitleDisplay: currentWorkOrder.title,
     woJofIdDisplay: currentWorkOrder.jofId,
-    // If 'jobStatus' needed to be displayed statically from original WO but also have an editable form field:
-    // originalWoStatusDisplay: currentWorkOrder.status.charAt(0).toUpperCase() + currentWorkOrder.status.slice(1),
   } : {};
-
 
   const renderManagerView = () => (
     <div>
@@ -237,8 +213,7 @@ const Step2WOCreation: React.FC<Step2WOCreationProps> = ({ viewMode }) => {
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Column 1: Work Order Selection and Details Form */}
-        <div className="border rounded-lg p-4 space-y-4 bg-white"> {/* Changed bg-gray-50 to bg-white and added shadow */}
+        <div className="border rounded-lg p-4 space-y-4 bg-white">
           <h3 className="text-lg font-medium text-gray-700 mb-1">Work Order Details</h3>
           
           <div>
@@ -253,9 +228,6 @@ const Step2WOCreation: React.FC<Step2WOCreationProps> = ({ viewMode }) => {
               className="w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
               disabled={workOrders.length === 0}
             >
-              <option value="" disabled>
-                {workOrders.length === 0 ? 'No Work Orders available' : '-- Choose a Work Order --'}
-              </option>
               {workOrders.map((wo) => (
                 <option key={wo.id} value={wo.id}>
                   {wo.id} - {wo.title}
@@ -267,10 +239,10 @@ const Step2WOCreation: React.FC<Step2WOCreationProps> = ({ viewMode }) => {
           {selectedWorkOrderId && currentWorkOrder ? (
             <EditableForm
               fieldsConfig={engagementFieldsConfig}
-              initialData={engagementFormData} // This now only contains the 8 fields + jobStatus
+              initialData={engagementFormData}
               staticFields={staticEngagementFields}
               onFormChange={handleEngagementFormChange}
-              workOrderDataForStaticDisplay={workOrderSpecificStaticData} // Pass the specific WO data for static display
+              workOrderDataForStaticDisplay={workOrderSpecificStaticData}
               viewMode={viewMode}
             />
           ) : (
@@ -280,8 +252,7 @@ const Step2WOCreation: React.FC<Step2WOCreationProps> = ({ viewMode }) => {
           )}
         </div>
         
-        {/* Column 2: Subcontractors List */}
-        <div className="border rounded-lg p-4 bg-white"> {/* Changed bg-gray-50 to bg-white and added shadow */}
+        <div className="border rounded-lg p-4 bg-white">
           <h3 className="text-lg font-medium text-gray-700 mb-3">Assign to Subcontractor</h3>
           {workOrders.length === 0 || !selectedWorkOrderId ? (
             <p className="text-gray-500 p-3 text-center bg-gray-50 rounded-md">
@@ -292,7 +263,7 @@ const Step2WOCreation: React.FC<Step2WOCreationProps> = ({ viewMode }) => {
                 No subcontractors available.
             </p>
           ) : (
-            <div className="space-y-3 max-h-96 overflow-y-auto"> {/* Added max-height and scroll */}
+            <div className="space-y-3 max-h-96 overflow-y-auto">
                 {subcontractors.map((sc) => (
                 <div 
                     key={sc.id}
@@ -320,20 +291,15 @@ const Step2WOCreation: React.FC<Step2WOCreationProps> = ({ viewMode }) => {
         </div>
       </div>
       
-      <div className="mt-8 flex justify-end"> {/* Increased mt-6 to mt-8 */}
+      <div className="mt-8 flex justify-end">
         <button 
           onClick={() => {
             if (selectedWorkOrderId && selectedSubcontractor && currentWorkOrder) {
-              // Prepare the data to be passed to the next step
               const assignmentData = {
                 workOrderId: selectedWorkOrderId,
                 subcontractorId: selectedSubcontractor,
                 engagementDetails: {
-                  ...engagementFormData, // All editable form fields
-                  // You might want to explicitly include the static WO details if needed downstream
-                  // id: currentWorkOrder.id, 
-                  // title: currentWorkOrder.title,
-                  // jofId: currentWorkOrder.jofId,
+                  ...engagementFormData,
                 },
               };
               goToStepWithItem(3, assignmentData);
@@ -378,11 +344,9 @@ const Step2WOCreation: React.FC<Step2WOCreationProps> = ({ viewMode }) => {
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Subcontractor</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Assigned By</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Assigned Date</th>
-              {/* You could add more columns here to display some of the engagementFormData if it's being logged/stored */}
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-            {/* Example Static Data: Replace with dynamic data from your application state/API */}
             <tr>
               <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">WO-2023-001</td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">TechSolutions Inc</td>
@@ -395,14 +359,12 @@ const Step2WOCreation: React.FC<Step2WOCreationProps> = ({ viewMode }) => {
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Jane Manager</td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">2023-10-19</td>
             </tr>
-            {/* Add more rows as needed or map over your actual assignment history data */}
           </tbody>
         </table>
       </div>
     </div>
   );
 
-  // Main render logic for Step2WOCreation
   switch (viewMode) {
     case 'manager':
       return renderManagerView();
